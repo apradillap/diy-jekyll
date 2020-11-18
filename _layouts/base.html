@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+    <head>    
+
+        <title>{% assign title_is_not_empty = page.title | is_not_empty %}{% if title_is_not_empty %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="google" content="notranslate" />
+        <meta name="description" content="{{ page.excerpt | default: site.description }}"/>
+        {% assign style = site.style | default: 'classic' %}
+        {% assign font = site.base_font | default: 'sans-serif' %}
+        {% if style == 'bold' %}
+          {% if font == 'serif' %}
+          <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
+          {% else %}
+          <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+          {% endif %}
+        {% elsif style == 'classic' %}
+          {% if font == 'serif' %}
+          <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+          {% else %}
+          <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+          {% endif %}
+        {% else %}
+        	{% if font == 'serif' %}
+        	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        	{% else %}
+        	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        	{% endif %}
+        {% endif %}
+        <link rel="stylesheet" href="{{ 'css/main.css' | relative_url }}">
+        
+    </head>
+    <body class="layout-{{ site.layout }} style-{{ site.style }} palette-{{ site.palette }} mode-{{ site.mode }} font-{{ site.base_font }}">
+        
+        {{ content }}
+        <script src="{{ 'js/init.js' | relative_url }}"></script>
+        <script src="{{ 'js/page-load.js' | relative_url }}"></script>
+    </body> 
+</html>
